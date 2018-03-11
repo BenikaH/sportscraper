@@ -8,7 +8,7 @@ from setuptools import setup, find_packages
 
 
 setup(name='sportscraper',
-      version='0.1',
+      version='0.2',
       description=u"A Tool to pull raw data from sport performance sources and place into database.",
       # long_description=long_description,
       classifiers=[],
