@@ -55,3 +55,8 @@ target/
 
 # OS X
 .DS_Store
+.idea/misc.xml
+.idea/modules.xml
+.idea/sportscraper.iml
+.idea/vcs.xml
+.idea/workspace.xml
