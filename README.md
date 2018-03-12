@@ -46,6 +46,6 @@ sportscraper statcast_upload \
 
 The tool is designed to run one query per day in the range specified so that it doesn't hit the 30k row limit per query for MLB's statcast tool.
 
-#### Brooks
+#### Brooks Baseball PITCHf/x
 
 Coming soon...
