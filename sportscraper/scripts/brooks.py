@@ -22,3 +22,10 @@ def cmd_pull_brooks():
             click.echo('Your current directory is not empty.  Please navigate to an empty directory to run this utility.')
     else:
         click.echo("Looks like the brooks repo is already cloned...")
+
+
+# def cmd_brooks_echo(start_date, end_date):
+
+    # data = statcast(start_dt=start_date, end_dt=end_date)
+
+    # click.echo(data.to_string())

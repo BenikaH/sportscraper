@@ -23,7 +23,9 @@ setup(name='sportscraper',
       install_requires=[
           'click',
           'pybaseball',
-          'gitpython'
+          'gitpython',
+          'sqlalchemy',
+          'pandas'
       ],
       extras_require={
           'test': ['pytest'],
