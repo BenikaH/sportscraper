@@ -35,7 +35,7 @@ def statcast_echo(start_date, end_date):
 @click.option('--db_username', '-u')
 @click.option('--db_password', '-p')
 @click.option('--db_hostname', '-h')
-@click.option('--db_database', '-d')
+@click.option('--db_name', '-d')
 @click.option('--db_tablename', '-t')
 def statcast_upload(start_date, end_date, db_username, db_password, db_hostname, db_database, db_tablename):
     cmd_statcast_upload(start_date, end_date, db_username, db_password, db_hostname, db_database, db_tablename)
