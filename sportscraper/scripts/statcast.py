@@ -5,11 +5,11 @@ import pandas as pd
 import click
 
 
-def cmd_statcast_upload(start_date, end_date, db_username, db_password, db_hostname, db_database, db_tablename):
+def cmd_statcast_upload(start_date, end_date, db_username, db_password, db_hostname, db_name, db_tablename):
 
     click.echo('[[[ PULLING STATCAST DATAFRAME ]]]')
 
-    statcast_engine = initdb_statcast(db_username, db_password, db_hostname, db_database, db_tablename)
+    statcast_engine = initdb_statcast(db_username, db_password, db_hostname, db_name, db_tablename)
 
     click.echo("Breaking up into queries by day to avoid the 30k row cap...")
 

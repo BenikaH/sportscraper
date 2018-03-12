@@ -2,12 +2,12 @@ from sqlalchemy import *
 import click
 
 
-def initdb_statcast(username, password, hostname, database, tablename):
-    password = ":" + password
-    statcast_engine = create_engine("mysql+mysqldb://" + username + password + "@" + hostname + "/" + database)
+def initdb_statcast(db_username, db_password, db_hostname, db_name, db_tablename):
+    db_password = ":" + db_password
+    statcast_engine = create_engine("mysql+mysqldb://" + db_username + db_password + "@" + db_hostname + "/" + db_name)
     meta = MetaData(bind=statcast_engine)
 
-    table_statcast = Table(tablename, meta,
+    table_statcast = Table(db_tablename, meta,
         Column("id", Integer, primary_key=True, autoincrement=True, nullable=False),
         Column("index", Integer, nullable=True),
         Column("sz_bot", Integer, nullable=True),
