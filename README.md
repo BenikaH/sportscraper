@@ -15,7 +15,7 @@ This could one day be added to PyPi, but for now just do the following to instal
 
 For an actively editable dev state (doesn't require reinstall after script changes):
 ```bash
-> pip install -e .[test]
+pip install -e .[test]
 ```
 
 For a system level installation. Ensure you are in the root directory (same as this readme), then run:
