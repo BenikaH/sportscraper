@@ -60,4 +60,6 @@ target/
 .idea/sportscraper.iml
 .idea/vcs.xml
 .idea/workspace.xml
+
 /venv/
+*.csv
