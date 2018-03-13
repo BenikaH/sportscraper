@@ -5,9 +5,9 @@ import pandas as pd
 import click
 
 
-def cmd_pitching_upload(start_date, end_date, db_username, db_password, db_hostname, db_name, db_tablename):
+def cmd_batting_upload(start_date, end_date, db_username, db_password, db_hostname, db_name, db_tablename):
 
-    click.echo('[[[ PULLING PITCHING DATAFRAME ]]]')
+    click.echo('[[[ PULLING BATTING DATAFRAME ]]]')
 
     engine = initdb_pitching(db_username, db_password, db_hostname, db_name, db_tablename)
 
