@@ -1,31 +1,30 @@
 import click
-
-import git
-import os
-
-
-def cmd_pull_brooks():
-    try:
-        os.stat(os.getcwd() + '/.deps/baseball-brooks-pitch-importer/')
-    except:
-        if not os.listdir(os.getcwd()):
-            try:
-                os.stat(os.getcwd() + '/.deps/')
-            except:
-                os.mkdir(os.getcwd() + '/.deps/')
-            click.echo("Pulling the brooks importer git repo...")
-            try:
-                git.Git(os.getcwd() + "/.deps/").clone("git://github.com/BenikaH/baseball-brooks-pitch-importer")
-            except:
-                click.echo("There was a problem pulling the brooks repo...")
-        else:
-            click.echo('Your current directory is not empty.  Please navigate to an empty directory to run this utility.')
-    else:
-        click.echo("Looks like the brooks repo is already cloned...")
+from pandas import *
+from .db_connector import *
 
 
-# def cmd_brooks_echo(start_date, end_date):
+def brooks_csv_to_dataframe(path_to_csv):
+    brooks_dataframe = read_csv(path_to_csv)
+    return brooks_dataframe
 
-    # data = statcast(start_dt=start_date, end_dt=end_date)
 
-    # click.echo(data.to_string())
+def cmd_brooks_echo(path_to_csv):
+    brooks_dataframe = brooks_csv_to_dataframe(path_to_csv)
+    click.echo(brooks_dataframe.head())
+
+
+def cmd_brooks_upload(path_to_csv, db_username, db_password, db_hostname, db_name, db_tablename):
+
+    click.echo('[[[ PULLING BROOKS CSV INTO DATAFRAME ]]]')
+
+    brooks_engine = initdb_brooks(db_username, db_password, db_hostname, db_name, db_tablename)
+
+    click.echo("Grabbing brooks data from csv located at = " + str(path_to_csv))
+
+    brooks_data = brooks_csv_to_dataframe(path_to_csv)
+    brooks_data = brooks_data.drop(columns=['id'])
+
+    click.echo("Inserting into database...")
+
+    upload_block(brooks_data, brooks_engine, db_tablename)
+

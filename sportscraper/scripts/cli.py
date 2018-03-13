@@ -17,9 +17,9 @@ def test(hostname):
     click.echo('testing input hostname = ' + hostname)
 
 
-@click.command()
-def pulldeps():
-    cmd_pull_brooks()
+# @click.command('--path_to_csv', '-c')
+# def brooks_echo(path_to_csv):
+#     cmd_brooks_echo(path_to_csv)
 
 
 @click.command()
@@ -41,9 +41,21 @@ def statcast_upload(start_date, end_date, db_username, db_password, db_hostname,
     cmd_statcast_upload(start_date, end_date, db_username, db_password, db_hostname, db_name, db_tablename)
 
 
+@click.command()
+@click.option('--path_to_csv', '-c')
+@click.option('--db_username', '-u')
+@click.option('--db_password', '-p')
+@click.option('--db_hostname', '-h')
+@click.option('--db_name', '-d')
+@click.option('--db_tablename', '-t')
+def brooks_upload(path_to_csv, db_username, db_password, db_hostname, db_name, db_tablename):
+    cmd_brooks_upload(path_to_csv, db_username, db_password, db_hostname, db_name, db_tablename)
+
+
 # add block of commands
 cli.add_command(test)
-cli.add_command(pulldeps)
 cli.add_command(statcast_echo)
 cli.add_command(statcast_upload)
+# cli.add_command(brooks_echo)
+cli.add_command(brooks_upload)
 

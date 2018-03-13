@@ -99,18 +99,66 @@ def initdb_brooks(db_username, db_password, db_hostname, db_name, db_tablename):
     brooks_engine = create_engine("mysql+mysqldb://" + db_username + db_password + "@" + db_hostname + "/" + db_name)
     meta = MetaData(bind=brooks_engine)
 
-    table_statcast = Table('statcast', meta,
-        Column("id", Float, primary_key=True, autoincrement=True, nullable=False),
-        Column("index", Float, nullable=True), extend_existing=True)
+    table_brooks = Table(db_tablename, meta,
+        Column("id", Integer, primary_key=True, autoincrement=True, nullable=False),
+        Column("inning", Integer, nullable=True),
+        Column("y0", Integer, nullable=True),
+        Column("pitcher_team", String(512), nullable=True),
+        Column("start_speed", Float, nullable=True),
+        Column("play_guid", String(512), nullable=True),
+        Column("pfx_zdatafile", Float, nullable=True),
+        Column("z0", Float, nullable=True),
+        Column("ab_id", Integer, nullable=True),
+        Column("pitcher_id", Integer, nullable=True),
+        Column("ay", Float, nullable=True),
+        Column("zone_location", Float, nullable=True),
+        Column("pxold", Float, nullable=True),
+        Column("batter_id", Integer, nullable=True),
+        Column("p_throws", String(512), nullable=True),
+        Column("park_sv_id", String(512), nullable=True),
+        Column("vy0", Float, nullable=True),
+        Column("az", Float, nullable=True),
+        Column("ab_count", Integer, nullable=True),
+        Column("pz", Float, nullable=True),
+        Column("spin", Float, nullable=True),
+        Column("px", Float, nullable=True),
+        Column("pfx_xdatafile", Float, nullable=True),
+        Column("date_stamp", String(512), nullable=True),
+        Column("gid", String(512), nullable=True),
+        Column("ftime", Float, nullable=True),
+        Column("tstart", Float, nullable=True),
+        Column("uncorrected_pfx_x", Float, nullable=True),
+        Column("uncorrected_pfx_z", Float, nullable=True),
+        Column("type", String(512), nullable=True),
+        Column("sz_bot", Float, nullable=True),
+        Column("norm_ht", Float, nullable=True),
+        Column("pfx_z", Float, nullable=True),
+        Column("strikes", Integer, nullable=True),
+        Column("mlbam_pitch_name", String(512), nullable=True),
+        Column("pitch_con", Float, nullable=True),
+        Column("pfx_x", Float, nullable=True),
+        Column("vystart", Float, nullable=True),
+        Column("ab_total", Integer, nullable=True),
+        Column("pdes", String(512), nullable=True),
+        Column("balls", Integer, nullable=True),
+        Column("des", String(512), nullable=True),
+        Column("x0", Float, nullable=True),
+        Column("ax", Float, nullable=True),
+        Column("sz_top", Float, nullable=True),
+        Column("stand", String(512), nullable=True),
+        Column("sb", Integer, nullable=True),
+        Column("vz0", Float, nullable=True),
+        Column("pzold", Float, nullable=True),
+        Column("vx0", Float, nullable=True))
 
-    meta.create_all(engine)
+    meta.create_all(brooks_engine)
 
     return brooks_engine
 
 
-def upload_block(data, statcast_engine, db_tablename):
+def upload_block(data, db_engine, db_tablename):
     # try:
-    data.to_sql(db_tablename, con=statcast_engine, if_exists='append', index=False)
+    data.to_sql(db_tablename, con=db_engine, if_exists='append', index=False, chunksize=10000)
 
     # except Exception as exc:
     #     click.echo('There was an error while trying to send to database...')
