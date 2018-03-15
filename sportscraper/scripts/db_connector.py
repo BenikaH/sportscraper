@@ -476,7 +476,7 @@ def initdb_batting(db_username, db_password, db_hostname, db_name, db_tablename)
     engine = create_engine("mysql+mysqldb://" + db_username + db_password + "@" + db_hostname + "/" + db_name)
     meta = MetaData(bind=engine)
 
-    table_pitching = Table(db_tablename, meta,
+    table_batting = Table(db_tablename, meta,
         *[
             Column("Name", String(512), nullable=True),
             Column("Team", String(512), nullable=True),
@@ -770,3 +770,70 @@ def initdb_batting(db_username, db_password, db_hostname, db_name, db_tablename)
 
     return engine
 
+
+def initdb_teambatting(db_username, db_password, db_hostname, db_name, db_tablename):
+    db_password = ":" + db_password
+    engine = create_engine("mysql+mysqldb://" + db_username + db_password + "@" + db_hostname + "/" + db_name)
+    meta = MetaData(bind=engine)
+
+    table_teambatting = Table(db_tablename, meta,
+        *[
+            Column("Team", String(512), nullable=True),
+            Column("Season", Float, nullable=True),
+            Column("SLG", Float, nullable=True),
+            Column("Off", Float, nullable=True),
+            Column("PA", Float, nullable=True),
+            Column("G", Float, nullable=True),
+            Column("wOBA", Float, nullable=True),
+            Column("HR", Float, nullable=True),
+            Column("BB", Float, nullable=True),
+            Column("BsR", Float, nullable=True),
+            Column("WAR", Float, nullable=True),
+            Column("BABIP", Float, nullable=True),
+            Column("K", Float, nullable=True),
+            Column("R", Float, nullable=True),
+            Column("ISO", Float, nullable=True),
+            Column("Def", Float, nullable=True),
+            Column("RBI", Float, nullable=True),
+            Column("SB", Float, nullable=True),
+            Column("AVG", Float, nullable=True),
+            Column("wRC+", Float, nullable=True),
+            Column("OBP", Float, nullable=True)])
+
+    meta.create_all(engine)
+
+    return engine
+
+
+def initdb_teampitching(db_username, db_password, db_hostname, db_name, db_tablename):
+    db_password = ":" + db_password
+    engine = create_engine("mysql+mysqldb://" + db_username + db_password + "@" + db_hostname + "/" + db_name)
+    meta = MetaData(bind=engine)
+
+    table_teampitching = Table(db_tablename, meta,
+        *[
+            Column("Team", String(512), nullable=True),
+            Column("Season", Float, nullable=True),
+            Column("SLG", Float, nullable=True),
+            Column("Off", Float, nullable=True),
+            Column("PA", Float, nullable=True),
+            Column("G", Float, nullable=True),
+            Column("wOBA", Float, nullable=True),
+            Column("HR", Float, nullable=True),
+            Column("BB", Float, nullable=True),
+            Column("BsR", Float, nullable=True),
+            Column("WAR", Float, nullable=True),
+            Column("BABIP", Float, nullable=True),
+            Column("K", Float, nullable=True),
+            Column("R", Float, nullable=True),
+            Column("ISO", Float, nullable=True),
+            Column("Def", Float, nullable=True),
+            Column("RBI", Float, nullable=True),
+            Column("SB", Float, nullable=True),
+            Column("AVG", Float, nullable=True),
+            Column("wRC+", Float, nullable=True),
+            Column("OBP", Float, nullable=True)])
+
+    meta.create_all(engine)
+
+    return engine

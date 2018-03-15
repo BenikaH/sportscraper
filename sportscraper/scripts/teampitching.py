@@ -1,19 +1,19 @@
-from pybaseball import batting_stats
+from pybaseball import team_pitching
 from db_connector import *
 import pandas as pd
 
 import click
 
 
-def cmd_batting_upload(start_year, end_year, db_username, db_password, db_hostname, db_name, db_tablename):
+def cmd_teampitching_upload(start_year, end_year, db_username, db_password, db_hostname, db_name, db_tablename):
 
-    click.echo('[[[ PULLING BATTING DATAFRAME ]]]')
+    click.echo('[[[ PULLING TEAMPITCHING DATAFRAME ]]]')
 
-    engine = initdb_batting(db_username, db_password, db_hostname, db_name, db_tablename)
+    engine = initdb_pitching(db_username, db_password, db_hostname, db_name, db_tablename)
 
     click.echo(str('Pulling data...'))
     try:
-        data = batting_stats(start_year, end_year)
+        data = team_pitching(start_year, end_year)
         data.columns = data.columns.str.replace('%', '')
         upload_block(data, engine, db_tablename)
     except Exception as exc:

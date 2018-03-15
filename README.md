@@ -43,7 +43,7 @@ The tool is designed to run one query per day in the range specified so that it 
 
 #### Pitching
 
-To upload statcast to a database, try the following.  Be sure to substitute your database information where needed:
+To upload the Pitching dataframe to a database, try the following.  Be sure to substitute your database information where needed:
 ```bash
 sportscraper pitching_upload \
     --start_date 2017-04-21 \
@@ -55,9 +55,23 @@ sportscraper pitching_upload \
     --db_tablename pitching
 ```
 
+#### Team Pitching
+
+To upload the Team Pitching dataframe to a database, try the following.  Be sure to substitute your database information where needed:
+```bash
+sportscraper teampitching_upload \
+    --start_date 2017-04-21 \
+    --end_date 2017-04-28 \
+    --db_username root \
+    --db_password root \
+    --db_hostname 127.0.0.1 \
+    --db_name baseball \
+    --db_tablename teampitching
+```
+
 #### Batting
 
-To upload statcast to a database, try the following.  Be sure to substitute your database information where needed:
+To upload the Batting dataframe to a database, try the following.  Be sure to substitute your database information where needed:
 ```bash
 sportscraper batting_upload \
     --start_date 2017-04-21 \
@@ -67,6 +81,20 @@ sportscraper batting_upload \
     --db_hostname 127.0.0.1 \
     --db_name baseball \
     --db_tablename batting
+```
+
+#### Team Batting
+
+To upload the Team Batting dataframe to a database, try the following.  Be sure to substitute your database information where needed:
+```bash
+sportscraper teambatting_upload \
+    --start_date 2017-04-21 \
+    --end_date 2017-04-28 \
+    --db_username root \
+    --db_password root \
+    --db_hostname 127.0.0.1 \
+    --db_name baseball \
+    --db_tablename teambatting
 ```
 
 #### Brooks Baseball PITCHf/x
